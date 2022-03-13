@@ -17,7 +17,13 @@ export const APIHeaders = {
 };
 
 export const API = axios.create({
-    baseURL: process.env.REACT_APP_BACK_URL,
+    baseURL: "https://zeroapp.herokuapp.com/api",
+    timeout: 12000,
+    headers: APIHeaders
+});
+
+export const APIlocal = axios.create({
+    baseURL: "http://localhost:8888/api",
     timeout: 12000,
     headers: APIHeaders
 });

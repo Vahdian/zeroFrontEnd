@@ -62,6 +62,7 @@ function getBills() {
         (expense: any) => expense.month === myMonth 
       );
     setThisMonthBills(billsInThisMonth)
+    console.log(billsInThisMonth)
     const copyBills = billsInThisMonth
     const graph: any = []
     const labels: any = []

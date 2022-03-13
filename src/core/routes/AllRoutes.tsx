@@ -9,6 +9,9 @@ import Expenses from '../../pages/expenses/Expenses'
 import ExpensesDetail from '../../pages/expenses/expensesDetail/ExpensesDetail'
 import Settings from '../../pages/settings/Settings'
 import BillsHistory from '../../pages/expenses/bills/billsHistory/BillsHistory'
+import Routine from '../../pages/gym/Gym'
+import WorkOut from '../../pages/gym/workOut/WorkOut'
+import Notes from '../../pages/notes/Notes'
 export default function AllRoutes() {
   return (
     <div>
@@ -23,6 +26,12 @@ export default function AllRoutes() {
       <Route path="/food" element={<Food />}/>
       <Route path="/settings" element={<Settings />}/>
       <Route path="/bills-history" element={<BillsHistory />}/>
+      <Route path="/routine" element={<Routine />}/>
+      <Route path="/workout" element={<WorkOut />}/>
+      <Route path="/notes" element={<Notes />}/>
+
+
+
      
       
       

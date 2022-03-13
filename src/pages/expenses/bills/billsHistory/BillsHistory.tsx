@@ -3,30 +3,24 @@ import { API } from "../../../../shared/consts/api.const";
 import Navbar from "../../../../shared/navbar/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCircleChevronLeft,} from "@fortawesome/free-solid-svg-icons";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Link } from "react-router-dom";
+import { faPlug } from "@fortawesome/free-solid-svg-icons";
+
 
 export default function Bills() {
-  ChartJS.register(ArcElement, Tooltip);
   const [bills, setBills] = useState([]);
-  const [thisMonthbills, setThisMonthBills] = useState([]);
+  const [thisYearBills, setThisYearBills] = useState([]);
 
-  function getMyMonth(month: any) {
-    return month < 10
-      ? 0 + (new Date().getMonth() + 1).toString()
-      : (month + 1).toString();
-  }
   function getBills() {
     API.get("/expenses").then((res: any) => {
       const sorted = res.data.sort((a: any, b: any) => b.order - a.order);
       const myBills = sorted.filter((bills: any) => bills.type === "bills");
       setBills(myBills);
-      const month = new Date().getMonth();
-      const myMonth = getMyMonth(month);
-      const billsInThisMonth = myBills.filter(
-        (expense: any) => expense.month === myMonth
+      const myYear = new Date().getFullYear.toString()
+      const billsInThisYear = myBills.filter(
+        (expense: any) => expense.year === myYear
       );
-      setThisMonthBills(billsInThisMonth);
+      setThisYearBills(billsInThisYear);
     });
   }
   useEffect(getBills, []);
@@ -35,13 +29,13 @@ export default function Bills() {
     <div className="h-screen bg-gray-900 text-white flex flex-col items-center w-full">
       <div className="flex flex-col items-center bg-black pb-10 rounded-b-3xl w-full">
         <Link to="/bills" className="text-md mt-10 mb-4">
-        <FontAwesomeIcon icon={faCircleChevronLeft} />THIS MONTH
+        <FontAwesomeIcon icon={faCircleChevronLeft} />TOTAL
         </Link>
         <div className="text-4xl mb-6 text-indigo-500">
           {" "}
-          {bills
+          {thisYearBills
             ? Math.round(
-                thisMonthbills.reduce(
+                bills.reduce(
                   (accumulator: any, actual: any) =>
                     accumulator + actual.amount,
                   0
@@ -68,6 +62,10 @@ export default function Bills() {
                 : 0}
               €
             </div>
+            {bills
+                      .filter((a: any) => a.month === "01").map((info: any)=>{
+                        return info.class === "energy" ? <div className="text-xs text-gray-300"> <FontAwesomeIcon icon={faPlug} />{info.amount}€</div> : ""
+                      })}
           </div>
           <div className="flex flex-col bg-gray-400 justify-center items-center p-4 px-8 rounded-xl bg-gradient-to-r from-indigo-800 to-green-500 h-16 w-40">
             <div className="text-sm">FEBRUARY</div>
@@ -86,6 +84,10 @@ export default function Bills() {
                 : 0}
               €
             </div>
+            {bills
+                      .filter((a: any) => a.month === "02").map((info: any)=>{
+                        return info.class === "energy" ? <div className="text-xs text-gray-300"> <FontAwesomeIcon icon={faPlug} />{info.amount}€</div> : ""
+                      })}
           </div>
           <div className="flex flex-col items-center justify-center bg-gray-400 p-4 px-8 rounded-xl bg-gradient-to-r from-indigo-800 to-green-500 h-16 w-40">
             <div className="text-md">MARCH</div>

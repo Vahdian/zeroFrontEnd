@@ -13,11 +13,11 @@ export default function BlackCard() {
         <FontAwesomeIcon icon={faCompass} />
         <p className="text-sm font-bold mt-1">Utilities</p>
       </Link>
-      <div className="flex w-2/5 p-2 py-6 flex-col rounded-md h-20 justify-center items-center bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold m-1 text-2xl">
+      <Link to="/notes" className="flex w-2/5 p-2 py-6 flex-col rounded-md h-20 justify-center items-center bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold m-1 text-2xl">
         <FontAwesomeIcon icon={faPenToSquare} />
         <p className="text-sm font-bold mt-1">Notes</p>
-      </div>
-      <Link to="/expenses" className="flex w-2/5 p-2 py-6 flex-col rounded-md h-20 justify-center items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold m-1 text-2xl">
+      </Link>
+      <Link to="/routine" className="flex w-2/5 p-2 py-6 flex-col rounded-md h-20 justify-center items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold m-1 text-2xl">
         {" "}
         <FontAwesomeIcon icon={faDumbbell} />
         <p className="text-sm font-bold mt-1">WorkOut</p>
